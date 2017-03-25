@@ -1,3 +1,7 @@
 anychat:
-  app:
-    id: A00020
+  private:
+    key:
+      path: data/private.pem
+  public:
+    key:
+      path: data/public.pem
