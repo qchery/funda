@@ -1,14 +1,12 @@
-package com.qchery.funda.utils;
-
-import com.qchery.funda.entity.AnyChatOutParam;
+package com.bairuitech.anychat; // 不能修改包的名称
 
 import java.io.File;
 import java.net.URI;
 import java.net.URISyntaxException;
 
-public class AnyChatSignUtils {
+public class AnyChatSign {
     // 对应用接入信息使用私钥进行签名
-    public static native int rsaSign(
+    public static native int RsaSign(
             int userid,
             String struserid,
             String appid,
@@ -29,12 +27,13 @@ public class AnyChatSignUtils {
         URI uri;
         try {
             String os = System.getProperty("os.name").toLowerCase();
-
-            if (os.contains("win")) {
-                uri = AnyChatSignUtils.class.getResource("/anychatsign.dll").toURI();
+            
+            if (os.indexOf("win") >= 0) {
+                uri = AnyChatSign.class.getResource("/anychatsign.dll").toURI();                
             } else {
-                uri = AnyChatSignUtils.class.getResource("/libanychatsign.so").toURI();
+                uri = AnyChatSign.class.getResource("/libanychatsign.so").toURI();  
             }
+
 
             String realPath = new File(uri).getAbsolutePath();
             System.load(realPath);

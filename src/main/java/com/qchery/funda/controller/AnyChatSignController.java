@@ -1,9 +1,9 @@
 package com.qchery.funda.controller;
 
+import com.bairuitech.anychat.AnyChatSignUtils;
+import com.bairuitech.anychat.SignResult;
 import com.qchery.funda.Result;
-import com.qchery.funda.entity.AnyChatSign;
 import com.qchery.funda.model.AnyChatSignModel;
-import com.qchery.funda.service.AnyChatSignService;
 import com.qchery.funda.utils.ResultUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -20,18 +20,18 @@ import org.springframework.web.bind.annotation.RestController;
 public class AnyChatSignController {
 
     @Autowired
-    private AnyChatSignService anyChatSignService;
+    private AnyChatSignUtils anyChatSignUtils;
 
     @PostMapping("sign")
     public Result sign(@RequestBody AnyChatSignModel signModel) {
-        AnyChatSign sign = anyChatSignService.getRsaSign(signModel.getUserName(), signModel.getAppid());
+        SignResult rsaSign = anyChatSignUtils.getRsaSign(signModel.getUserName(), signModel.getAppid());
 //        response.addHeader("Access-Control-Allow-Origin", "*");
-        return ResultUtils.success(sign);
+        return ResultUtils.success(rsaSign);
     }
 
     @PostMapping("verify")
     public Result verifySign(@RequestBody AnyChatSignModel signModel) {
-        int verifySign = anyChatSignService.verifySign(signModel.getUserName(),
+        int verifySign = anyChatSignUtils.verifySign(signModel.getUserName(),
                 signModel.getSigStr(), signModel.getTimestamp(), signModel.getAppid());
         return ResultUtils.success(verifySign);
     }

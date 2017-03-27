@@ -1,33 +1,33 @@
-package com.qchery.funda.entity;
+package com.bairuitech.anychat;
 
-public class AnyChatSign {
-    private int timestamp;
+public class SignResult {
+    private int    timestamp;
     private String sigStr;
-    private int errorCode;
+    private int    errorcode;
     private String appId;
-
+    
     public int getTimestamp() {
         return timestamp;
     }
-
+    
     public void setTimestamp(int timestamp) {
         this.timestamp = timestamp;
     }
-
+    
     public String getSigStr() {
         return sigStr;
     }
-
+    
     public void setSigStr(String sigStr) {
         this.sigStr = sigStr;
     }
-
-    public int getErrorCode() {
-        return errorCode;
+    
+    public int getErrorcode() {
+        return errorcode;
     }
-
-    public void setErrorCode(int errorCode) {
-        this.errorCode = errorCode;
+    
+    public void setErrorcode(int errorcode) {
+        this.errorcode = errorcode;
     }
 
     public String getAppId() {

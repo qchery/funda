@@ -1,12 +1,12 @@
 package com.qchery.funda.model;
 
-import com.qchery.funda.entity.AnyChatSign;
+import com.bairuitech.anychat.SignResult;
 
 /**
  * @author Chery
  * @date 2017/3/25 - 下午10:12
  */
-public class AnyChatSignModel extends AnyChatSign {
+public class AnyChatSignModel extends SignResult {
 
     /**
      * 用户名

@@ -1,7 +1,7 @@
 anychat:
   private:
     key:
-      path: data/private.pem
+      path: D:/WorkSpace/funda/src/main/resources/data/private.pem
   public:
     key:
-      path: data/public.pem
+      path: D:/WorkSpace/funda/src/main/resources/data/public.pem

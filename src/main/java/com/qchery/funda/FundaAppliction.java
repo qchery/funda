@@ -10,7 +10,10 @@ import org.springframework.context.annotation.ComponentScan;
  */
 //@SpringBootConfiguration
 @EnableAutoConfiguration
-@ComponentScan
+@ComponentScan(basePackages = {
+        "com.qchery",
+        "com.bairuitech.anychat"
+})
 public class FundaAppliction {
 
     public static void main(String[] args) {
