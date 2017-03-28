@@ -1,8 +1,8 @@
-package com.qchery.funda.controller;
+package com.qchery.funda.modules.sys.controller;
 
 import com.qchery.funda.Result;
-import com.qchery.funda.entity.User;
-import com.qchery.funda.service.UserService;
+import com.qchery.funda.modules.sys.entity.User;
+import com.qchery.funda.modules.sys.service.UserService;
 import com.qchery.funda.utils.ResultUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;

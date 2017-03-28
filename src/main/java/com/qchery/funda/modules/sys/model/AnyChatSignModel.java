@@ -1,4 +1,4 @@
-package com.qchery.funda.model;
+package com.qchery.funda.modules.sys.model;
 
 import com.bairuitech.anychat.SignResult;
 

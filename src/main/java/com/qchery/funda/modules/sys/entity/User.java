@@ -1,4 +1,4 @@
-package com.qchery.funda.entity;
+package com.qchery.funda.modules.sys.entity;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;

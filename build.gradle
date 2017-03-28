@@ -3,18 +3,20 @@ version '1.0-SNAPSHOT'
 
 buildscript {
     repositories {
+        mavenCentral()
 //        jcenter()
         maven { url "http://maven.aliyun.com/nexus/content/groups/public/" }
         maven { url 'http://repo.spring.io/snapshot' }
         maven { url 'http://repo.spring.io/milestone' }
     }
-    dependencies {
-        classpath 'org.springframework.boot:spring-boot-gradle-plugin:2.0.0.BUILD-SNAPSHOT'
-    }
+//    dependencies {
+//        classpath 'org.springframework.boot:spring-boot-gradle-plugin:2.0.0.BUILD-SNAPSHOT'
+//    }
 }
 
 apply plugin: 'java'
-apply plugin: 'org.springframework.boot'
+//apply plugin: 'org.springframework.boot'
+apply plugin: 'war'
 
 sourceCompatibility = 1.8
 
@@ -23,8 +25,7 @@ ext {
 }
 
 repositories {
-//    mavenCentral()
-
+    mavenCentral()
     maven { url "http://maven.aliyun.com/nexus/content/groups/public/" }
     maven { url "http://repo.spring.io/snapshot" }
     maven { url "http://repo.spring.io/milestone" }
@@ -34,6 +35,7 @@ dependencies {
     compile(
             "org.springframework.boot:spring-boot-starter-web:${springbootVersion}",
             "org.springframework.boot:spring-boot-starter-data-jpa:${springbootVersion}",
+            "com.github.ulisesbocchio:jasypt-spring-boot-starter:1.7",
             "mysql:mysql-connector-java:5.1.32"
     )
     testCompile(

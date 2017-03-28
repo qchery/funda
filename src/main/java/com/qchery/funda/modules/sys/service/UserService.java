@@ -1,7 +1,7 @@
-package com.qchery.funda.service;
+package com.qchery.funda.modules.sys.service;
 
-import com.qchery.funda.dao.UserRespository;
-import com.qchery.funda.entity.User;
+import com.qchery.funda.modules.sys.dao.UserRespository;
+import com.qchery.funda.modules.sys.entity.User;
 import com.qchery.funda.enums.ResultCode;
 import com.qchery.funda.exception.ResultException;
 import org.springframework.beans.factory.annotation.Autowired;

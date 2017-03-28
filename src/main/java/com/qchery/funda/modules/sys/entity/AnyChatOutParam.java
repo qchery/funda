@@ -1,4 +1,4 @@
-package com.qchery.funda.entity;
+package com.qchery.funda.modules.sys.entity;
 
 /**
  * 通用函数返回参数类

@@ -8,12 +8,12 @@ anychat:
 spring:
   datasource:
     url: jdbc:mysql://localhost:3306/test?useUnicode=true&characterEncoding=utf-8
-    username: root
-    password: qinrui
+    username: ENC(ufTaw7PPW6ZrTgZ+yQW7UQ==)
+    password: ENC(E6cHDRHrZ1DqLHPeJGo2Sw==)
     driver-class-name: com.mysql.jdbc.Driver
   jpa:
-    hibernate:
-      ddl-auto: create
+#    hibernate:
+#      ddl-auto: create
     show-sql: true
   http:
     encoding:

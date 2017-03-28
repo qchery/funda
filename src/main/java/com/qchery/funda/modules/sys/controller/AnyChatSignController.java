@@ -1,9 +1,9 @@
-package com.qchery.funda.controller;
+package com.qchery.funda.modules.sys.controller;
 
 import com.bairuitech.anychat.AnyChatSignUtils;
 import com.bairuitech.anychat.SignResult;
 import com.qchery.funda.Result;
-import com.qchery.funda.model.AnyChatSignModel;
+import com.qchery.funda.modules.sys.model.AnyChatSignModel;
 import com.qchery.funda.utils.ResultUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;

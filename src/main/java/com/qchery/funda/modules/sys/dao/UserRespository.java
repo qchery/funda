@@ -1,6 +1,6 @@
-package com.qchery.funda.dao;
+package com.qchery.funda.modules.sys.dao;
 
-import com.qchery.funda.entity.User;
+import com.qchery.funda.modules.sys.entity.User;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
