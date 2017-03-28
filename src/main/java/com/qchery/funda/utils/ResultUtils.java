@@ -13,12 +13,12 @@ public class ResultUtils {
         return new Result(ResultCode.SUCCESS, data);
     }
 
-    public static Result warn(Object data) {
-        return new Result(ResultCode.WARN, data);
+    public static Result warn(ResultCode resultCode, Object data) {
+        return new Result(resultCode, data);
     }
 
-    public static Result warn() {
-        return new Result(ResultCode.WARN);
+    public static Result warn(ResultCode resultCode) {
+        return new Result(resultCode);
     }
 
 }
