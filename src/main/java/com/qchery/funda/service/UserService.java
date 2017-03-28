@@ -1,6 +1,10 @@
 package com.qchery.funda.service;
 
+import com.qchery.funda.dao.UserRespository;
 import com.qchery.funda.entity.User;
+import com.qchery.funda.enums.ResultCode;
+import com.qchery.funda.exception.ResultException;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 /**
@@ -10,11 +14,19 @@ import org.springframework.stereotype.Service;
 @Service
 public class UserService {
 
-    public User login() {
-        User user = new User();
-        user.setUsername("Emmu Thusi");
-        user.setPassword("123456");
-        return user;
+    @Autowired
+    private UserRespository userRespository;
+
+    public User login(User user) {
+        User existUser = userRespository.findByUsername(user.getUsername());
+        if (!existUser.getPassword().equals(user.getPassword())) {
+            throw new ResultException(ResultCode.PASSWORD_ERROR);
+        }
+        return existUser;
+    }
+
+    public User save(User user) {
+        return userRespository.save(user);
     }
 
 }

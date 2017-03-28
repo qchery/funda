@@ -1,11 +1,19 @@
 package com.qchery.funda.entity;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+
 /**
  * @author Chery
  * @date 2017/3/24 - 下午11:17
  */
+@Entity
 public class User {
 
+    @Id
+    @GeneratedValue
+    private int id;
     private String username;
     private String password;
 

@@ -31,13 +31,15 @@ repositories {
 }
 
 dependencies {
-
     compile(
-            "org.springframework.boot:spring-boot-starter-web:${springbootVersion}"
+            "org.springframework.boot:spring-boot-starter-web:${springbootVersion}",
+            "org.springframework.boot:spring-boot-starter-data-jpa:${springbootVersion}",
+            "mysql:mysql-connector-java:5.1.32"
     )
     testCompile(
             "junit:junit:4.11",
             "org.springframework.boot:spring-boot-starter-test:${springbootVersion}"
     )
 }
+
 

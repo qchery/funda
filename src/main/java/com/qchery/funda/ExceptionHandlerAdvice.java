@@ -1,6 +1,7 @@
 package com.qchery.funda;
 
 import com.qchery.funda.enums.ResultCode;
+import com.qchery.funda.exception.ResultException;
 import com.qchery.funda.utils.ResultUtils;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -17,6 +18,12 @@ public class ExceptionHandlerAdvice {
     @ResponseBody
     public Result doHandleUnknowException() {
         return ResultUtils.warn(ResultCode.WEAK_NET_WORK);
+    }
+
+    @ExceptionHandler(ResultException.class)
+    @ResponseBody
+    public Result doHandleResultExcption(ResultException exception) {
+        return ResultUtils.warn(exception.getResultCode());
     }
 
 }
