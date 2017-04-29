@@ -1,0 +1,6 @@
+sys:
+  users:
+    - username: 13632672222
+      password: 123456
+      age: 22
+      nickName: 张三
