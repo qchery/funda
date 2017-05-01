@@ -16,13 +16,16 @@ import javax.validation.Valid;
 @RequestMapping("/sys/user")
 public class UserController {
 
-@Autowired
-private SystemProperties systemProperties;
+    @Autowired
+    private SystemProperties systemProperties;
 
-@RequestMapping("list")
-public Result list() {
-    return new Result(ResultCode.SUCCESS, systemProperties.getUsers());
-}
+    @RequestMapping("list")
+    public Result list() {
+        if (systemProperties.getUsers() != null) {
+            throw new RuntimeException();
+        }
+        return new Result(ResultCode.SUCCESS, systemProperties.getUsers());
+    }
 
     @RequestMapping("login")
     public Result login(@RequestBody @Valid UserModel userModel) {
