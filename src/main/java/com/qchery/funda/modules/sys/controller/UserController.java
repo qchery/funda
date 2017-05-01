@@ -6,6 +6,7 @@ import com.qchery.funda.modules.sys.entity.User;
 import com.qchery.funda.modules.sys.model.UserModel;
 import com.qchery.funda.props.SystemProperties;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -18,6 +19,12 @@ public class UserController {
 
     @Autowired
     private SystemProperties systemProperties;
+
+    @ExceptionHandler(Exception.class)
+    public Result handleException(Exception e) {
+        e.printStackTrace();
+        return new Result(ResultCode.WEAK_NET_WORK);
+    }
 
     @RequestMapping("list")
     public Result list() {
