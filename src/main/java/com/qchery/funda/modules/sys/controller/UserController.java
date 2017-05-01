@@ -2,7 +2,6 @@ package com.qchery.funda.modules.sys.controller;
 
 import com.qchery.funda.Result;
 import com.qchery.funda.enums.ResultCode;
-import com.qchery.funda.modules.BaseController;
 import com.qchery.funda.modules.sys.entity.User;
 import com.qchery.funda.modules.sys.model.UserModel;
 import com.qchery.funda.props.SystemProperties;
@@ -15,7 +14,7 @@ import javax.validation.Valid;
 
 @RestController
 @RequestMapping("/sys/user")
-public class UserController extends BaseController {
+public class UserController {
 
     @Autowired
     private SystemProperties systemProperties;

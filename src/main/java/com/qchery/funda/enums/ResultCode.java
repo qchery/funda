@@ -8,7 +8,8 @@ public enum  ResultCode {
 
     SUCCESS(0, "请求成功"),
     WEAK_NET_WORK(-1, "网络异常，请稍后重试"),
-    PASSWORD_ERROR(10001, "用户名或密码错误");
+    PASSWORD_ERROR(10001, "用户名或密码错误"),
+    PARAMETER_ERROR(10101, "参数错误");
 
     private int code;
     private String msg;
