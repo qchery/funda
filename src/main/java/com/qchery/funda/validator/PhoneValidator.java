@@ -14,6 +14,6 @@ public class PhoneValidator implements ConstraintValidator<Phone, String> {
 
     @Override
     public boolean isValid(String value, ConstraintValidatorContext constraintValidatorContext) {
-        return pattern.matcher(value).matches();
+        return value != null && pattern.matcher(value).matches();
     }
 }
