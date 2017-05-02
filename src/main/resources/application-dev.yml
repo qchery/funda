@@ -4,3 +4,8 @@ sys:
       password: 123456
       age: 22
       nickName: 张三
+logging:
+  level:
+    com:
+      qchery:
+        funda: debug

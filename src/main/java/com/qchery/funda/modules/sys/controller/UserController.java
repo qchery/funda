@@ -21,9 +21,6 @@ public class UserController {
 
     @RequestMapping("list")
     public Result list() {
-        if (systemProperties.getUsers() != null) {
-            throw new RuntimeException();
-        }
         return new Result(ResultCode.SUCCESS, systemProperties.getUsers());
     }
 
