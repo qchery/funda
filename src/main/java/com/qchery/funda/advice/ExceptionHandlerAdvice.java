@@ -1,13 +1,18 @@
 package com.qchery.funda.advice;
 
+import com.alibaba.fastjson.JSON;
 import com.qchery.funda.Result;
 import com.qchery.funda.enums.ResultCode;
+import com.qchery.funda.modules.sys.controller.UserController;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 /**
@@ -17,6 +22,8 @@ import java.util.List;
 @ControllerAdvice
 @ResponseBody
 public class ExceptionHandlerAdvice {
+
+    private Logger logger = LoggerFactory.getLogger(ExceptionHandlerAdvice.class);
 
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public Result handleIllegalParamException(MethodArgumentNotValidException e) {
@@ -31,8 +38,9 @@ public class ExceptionHandlerAdvice {
     }
 
     @ExceptionHandler(Exception.class)
-    public Result handleException(Exception e) {
-        e.printStackTrace();
+    public Result handleException(Exception e, HttpServletRequest request) {
+        logger.error("uri={} | requestBody={}", request.getRequestURI(),
+                JSON.toJSONString(UserController.MODEL_HOLDER.get()));
         return new Result(ResultCode.WEAK_NET_WORK);
     }
 
