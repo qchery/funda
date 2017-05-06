@@ -3,6 +3,7 @@ package com.qchery.funda.advice;
 import com.alibaba.fastjson.JSON;
 import com.qchery.funda.Result;
 import com.qchery.funda.enums.ResultCode;
+import com.qchery.funda.exception.ResultException;
 import com.qchery.funda.modules.sys.controller.UserController;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -37,10 +38,17 @@ public class ExceptionHandlerAdvice {
         return result;
     }
 
+    @ExceptionHandler(ResultException.class)
+    public Result handleResultException(ResultException e, HttpServletRequest request) {
+        logger.debug("uri={} | requestBody={}", request.getRequestURI(),
+                JSON.toJSONString(UserController.MODEL_HOLDER.get()));
+        return new Result(e.getResultCode());
+    }
+
     @ExceptionHandler(Exception.class)
     public Result handleException(Exception e, HttpServletRequest request) {
         logger.error("uri={} | requestBody={}", request.getRequestURI(),
-                JSON.toJSONString(UserController.MODEL_HOLDER.get()));
+                JSON.toJSONString(UserController.MODEL_HOLDER.get()), e);
         return new Result(ResultCode.WEAK_NET_WORK);
     }
 
