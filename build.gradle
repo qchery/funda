@@ -20,7 +20,9 @@ dependencies {
 
     compile(
             "org.springframework.boot:spring-boot-starter-web:${springbootVersion}",
-            "com.alibaba:fastjson:1.2.31"
+            "com.alibaba:fastjson:1.2.31",
+            "org.springframework.boot:spring-boot-starter-data-jpa:${springbootVersion}",
+            "org.hsqldb:hsqldb:2.4.0"
 //            "com.fasterxml.jackson.dataformat:jackson-dataformat-xml:2.8.8",
     )
     testCompile(
