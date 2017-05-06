@@ -4,7 +4,7 @@ import com.qchery.funda.Result;
 import com.qchery.funda.enums.ResultCode;
 import com.qchery.funda.modules.sys.entity.User;
 import com.qchery.funda.modules.sys.model.UserModel;
-import com.qchery.funda.props.SystemProperties;
+import com.qchery.funda.modules.sys.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.InitBinder;
@@ -21,29 +21,16 @@ public class UserController {
     public static final ThreadLocal<Object> MODEL_HOLDER = new ThreadLocal<>();
 
     @Autowired
-    private SystemProperties systemProperties;
+    private UserService userService;
 
     @RequestMapping("list")
     public Result list() {
-        return new Result(ResultCode.SUCCESS, systemProperties.getUsers());
+        return new Result(ResultCode.SUCCESS, userService.listAll());
     }
 
     @RequestMapping("login")
     public Result login(@RequestBody @Valid UserModel userModel) {
-        User existUser = null;
-        for (User user : systemProperties.getUsers()) {
-            if (user.getUsername().equals(userModel.getUsername())) {
-                existUser = user;
-            }
-        }
-
-        if (existUser == null || !existUser.getPassword().equals(userModel.getPassword())) {
-            return new Result(ResultCode.PASSWORD_ERROR);
-        }
-
-        User user = new User();
-        user.setUsername(userModel.getUsername());
-        user.setPassword(userModel.getPassword());
+        User user = userService.login(userModel.getUsername(), userModel.getPassword());
         return new Result(ResultCode.SUCCESS, user);
     }
 
