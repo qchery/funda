@@ -7,6 +7,8 @@ import com.qchery.funda.modules.sys.entity.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 /**
  * @author Chery
  * @date 2017/3/24 - 下午11:52
@@ -25,7 +27,7 @@ public class UserService {
         return existUser;
     }
 
-    public Iterable<User> listAll() {
+    public List<User> listAll() {
         return userDao.findAll();
     }
 
