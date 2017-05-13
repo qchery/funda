@@ -2,6 +2,7 @@ package com.qchery.funda.modules.sys.controller;
 
 import com.qchery.funda.Result;
 import com.qchery.funda.enums.ResultCode;
+import com.qchery.funda.utils.ResultUtils;
 import org.springframework.boot.autoconfigure.web.ErrorController;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -23,6 +24,6 @@ public class FundaErrorController implements ErrorController {
     @RequestMapping
     @ResponseBody
     public Result doHandleError() {
-        return new Result(ResultCode.WEAK_NET_WORK);
+        return ResultUtils.warn(ResultCode.WEAK_NET_WORK);
     }
 }

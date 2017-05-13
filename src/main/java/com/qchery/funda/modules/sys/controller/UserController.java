@@ -1,10 +1,10 @@
 package com.qchery.funda.modules.sys.controller;
 
 import com.qchery.funda.Result;
-import com.qchery.funda.enums.ResultCode;
 import com.qchery.funda.modules.sys.entity.User;
 import com.qchery.funda.modules.sys.model.UserModel;
 import com.qchery.funda.modules.sys.service.UserService;
+import com.qchery.funda.utils.ResultUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.InitBinder;
@@ -25,13 +25,13 @@ public class UserController {
 
     @RequestMapping("list")
     public Result list() {
-        return new Result(ResultCode.SUCCESS, userService.listAll());
+        return ResultUtils.success(userService.listAll());
     }
 
     @RequestMapping("login")
     public Result login(@RequestBody @Valid UserModel userModel) {
         User user = userService.login(userModel.getUsername(), userModel.getPassword());
-        return new Result(ResultCode.SUCCESS, user);
+        return ResultUtils.success(user);
     }
 
     @InitBinder

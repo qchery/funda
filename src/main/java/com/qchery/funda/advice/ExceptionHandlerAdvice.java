@@ -5,6 +5,7 @@ import com.qchery.funda.Result;
 import com.qchery.funda.enums.ResultCode;
 import com.qchery.funda.exception.ResultException;
 import com.qchery.funda.modules.sys.controller.UserController;
+import com.qchery.funda.utils.ResultUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.validation.ObjectError;
@@ -33,23 +34,21 @@ public class ExceptionHandlerAdvice {
         if (errors.size() > 0) {
             tips = errors.get(0).getDefaultMessage();
         }
-        Result result = new Result(ResultCode.PARAMETER_ERROR);
-        result.setMsg(tips);
-        return result;
+        return ResultUtils.warn(ResultCode.PARAMETER_ERROR, tips);
     }
 
     @ExceptionHandler(ResultException.class)
     public Result handleResultException(ResultException e, HttpServletRequest request) {
         logger.debug("uri={} | requestBody={}", request.getRequestURI(),
                 JSON.toJSONString(UserController.MODEL_HOLDER.get()));
-        return new Result(e.getResultCode());
+        return ResultUtils.warn(e.getResultCode());
     }
 
     @ExceptionHandler(Exception.class)
     public Result handleException(Exception e, HttpServletRequest request) {
         logger.error("uri={} | requestBody={}", request.getRequestURI(),
                 JSON.toJSONString(UserController.MODEL_HOLDER.get()), e);
-        return new Result(ResultCode.WEAK_NET_WORK);
+        return ResultUtils.warn(ResultCode.WEAK_NET_WORK);
     }
 
 }

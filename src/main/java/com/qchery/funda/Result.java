@@ -6,13 +6,13 @@ import com.qchery.funda.enums.ResultCode;
  * @author Chery
  * @date 2017/3/24 - 下午11:22
  */
-public class Result {
+public class Result<T> {
 
     private int code;
     private String msg;
-    private Object data;
+    private T data;
 
-    public Result(ResultCode resultCode, Object data) {
+    public Result(ResultCode resultCode, T data) {
         this(resultCode);
         this.data = data;
     }
@@ -42,7 +42,7 @@ public class Result {
         return data;
     }
 
-    public void setData(Object data) {
+    public void setData(T data) {
         this.data = data;
     }
 }
