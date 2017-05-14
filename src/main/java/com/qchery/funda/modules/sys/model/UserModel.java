@@ -11,6 +11,7 @@ public class UserModel {
 
     private String username;
     private String password;
+    private int age;
 
     @NotBlank(message = "用户名不能为空")
     @Phone
@@ -29,5 +30,13 @@ public class UserModel {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public int getAge() {
+        return age;
+    }
+
+    public void setAge(int age) {
+        this.age = age;
     }
 }

@@ -12,6 +12,9 @@ public class Result<T> {
     private String msg;
     private T data;
 
+    public Result() {
+    }
+
     public Result(ResultCode resultCode, T data) {
         this(resultCode);
         this.data = data;

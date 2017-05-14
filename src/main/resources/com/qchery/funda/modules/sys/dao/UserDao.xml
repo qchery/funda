@@ -11,4 +11,11 @@
         SELECT *
         FROM sys_user
     </select>
+
+    <select id="findByAgeLargeThan" resultType="User">
+        SELECT *
+        FROM sys_user
+        WHERE age &lt; #{age}
+    </select>
+
 </mapper>

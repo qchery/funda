@@ -16,4 +16,6 @@ public interface UserDao {
 
     List<User> findAll();
 
+    List<User> findByAgeLargeThan(int age);
+
 }

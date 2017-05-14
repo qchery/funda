@@ -31,4 +31,8 @@ public class UserService {
         return userDao.findAll();
     }
 
+    public List<User> listByAgeLargeThan(int age) {
+        return userDao.findByAgeLargeThan(age);
+    }
+
 }

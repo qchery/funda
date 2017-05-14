@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.validation.Valid;
+import java.util.List;
 
 @RestController
 @RequestMapping("/sys/user")
@@ -24,8 +25,9 @@ public class UserController {
     private UserService userService;
 
     @RequestMapping("list")
-    public Result list() {
-        return ResultUtils.success(userService.listAll());
+    public Result list(@RequestBody UserModel userModel) {
+        List<User> userList = userService.listByAgeLargeThan(userModel.getAge());
+        return ResultUtils.success(userList);
     }
 
     @RequestMapping("login")
