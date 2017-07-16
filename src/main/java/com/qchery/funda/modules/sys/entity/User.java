@@ -1,6 +1,7 @@
 package com.qchery.funda.modules.sys.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.qchery.funda.utils.annotation.JsonDes;
 
 import javax.validation.constraints.Min;
 
@@ -19,6 +20,11 @@ public class User {
     @Min(20)
     private int age;
     private String nickName;
+    /**
+     * 证件号
+     */
+    @JsonDes
+    private String certId;
 
     public Long getId() {
         return id;
@@ -59,5 +65,13 @@ public class User {
 
     public void setNickName(String nickName) {
         this.nickName = nickName;
+    }
+
+    public String getCertId() {
+        return certId;
+    }
+
+    public void setCertId(String certId) {
+        this.certId = certId;
     }
 }

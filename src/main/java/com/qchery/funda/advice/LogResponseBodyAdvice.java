@@ -1,6 +1,6 @@
 package com.qchery.funda.advice;
 
-import com.alibaba.fastjson.JSON;
+import com.qchery.funda.utils.JsonDesUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.core.MethodParameter;
@@ -26,7 +26,7 @@ public class LogResponseBodyAdvice implements ResponseBodyAdvice {
 
     @Override
     public Object beforeBodyWrite(Object body, MethodParameter returnType, MediaType selectedContentType, Class selectedConverterType, ServerHttpRequest request, ServerHttpResponse response) {
-        logger.debug("uri={} | responseBody={}", request.getURI().getPath(), JSON.toJSONString(body));
+        logger.debug("uri={} | responseBody={}", request.getURI().getPath(), JsonDesUtils.toLogString(body));
         return body;
     }
 }

@@ -40,13 +40,16 @@ public class UserControllerTest {
         ArrayList<User> users = new ArrayList<>();
         User user = new User();
         user.setId(1000L);
-        user.setAge(18);
+        user.setAge(22);
         user.setUsername("13632674444");
         user.setNickName("小芳");
+        user.setCertId("140423199905011117");
         users.add(user);
 
-        given(this.userService.listAll()).willReturn(users);
-        mockMvc.perform(post("/sys/user/list")
+        given(this.userService.listByAgeLargeThan(20)).willReturn(users);
+        UserModel userModel = new UserModel();
+        userModel.setAge(20);
+        mockMvc.perform(post("/sys/user/list").content(JSON.toJSONString(userModel))
                 .contentType(MediaType.APPLICATION_JSON_UTF8).accept(MediaType.APPLICATION_JSON_UTF8))
                 .andExpect(status().isOk())
                 .andDo(print())

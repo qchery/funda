@@ -1,6 +1,6 @@
 package com.qchery.funda.advice;
 
-import com.alibaba.fastjson.JSON;
+import com.qchery.funda.utils.JsonDesUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.core.MethodParameter;
@@ -53,7 +53,7 @@ public class LogRequestBodyAdvice implements RequestBodyAdvice {
         if (!methodMappingUri.startsWith("/")) {
             methodMappingUri = "/" + methodMappingUri;
         }
-        logger.debug("uri={} | requestBody={}", classMappingUri + methodMappingUri, JSON.toJSONString(body));
+        logger.debug("uri={} | requestBody={}", classMappingUri + methodMappingUri, JsonDesUtils.toLogString(body));
         return body;
     }
 
