@@ -24,19 +24,40 @@ public class JsonDesUtils {
         return JSON.toJSONString(logData, (ValueFilter) (obj, name, value) -> {
             if (value instanceof String) {
                 Class<?> clazz = obj.getClass();
-                try {
-                    Field field = clazz.getDeclaredField(name);
+                Field field = getDeclaredFiled(clazz, name);
+
+                if (field != null) {
                     JsonDes jsonDes = field.getDeclaredAnnotation(JsonDes.class);
                     if (null != jsonDes) {
                         return desensitization((String) value, jsonDes.prefixLength(),
                                 jsonDes.suffixLength(), jsonDes.asteriskNum());
                     }
-                } catch (NoSuchFieldException e) {
-                    e.printStackTrace();
                 }
             }
             return value;
         });
+    }
+
+    /**
+     * 获取 Class 中的 Field
+     *
+     * @param clazz     类字节码对象
+     * @param filedName 字段名称
+     * @return 字段字节码对象
+     */
+    private static Field getDeclaredFiled(Class<?> clazz, String filedName) {
+        Field declaredField = null;
+        while (clazz != null) {
+            try {
+                declaredField = clazz.getDeclaredField(filedName);
+                if (declaredField != null || clazz.getSuperclass() == null) {
+                    break;
+                }
+            } catch (NoSuchFieldException e) {
+                clazz = clazz.getSuperclass();
+            }
+        }
+        return declaredField;
     }
 
     /**
