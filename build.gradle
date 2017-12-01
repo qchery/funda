@@ -1,9 +1,16 @@
+plugins {
+    id 'org.springframework.boot' version '1.5.2.RELEASE'
+}
+apply plugin: 'java'
+
 group 'com.qchery'
 version '1.0-SNAPSHOT'
 
-apply plugin: 'java'
-
 sourceCompatibility = 1.8
+
+springBoot {
+    executable = true
+}
 
 ext {
     springbootVersion = "1.5.2.RELEASE"
