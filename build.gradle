@@ -1,9 +1,16 @@
+plugins {
+    id 'org.springframework.boot' version '1.5.2.RELEASE'
+}
+apply plugin: 'java'
+
 group 'com.qchery'
 version '1.0-SNAPSHOT'
 
-apply plugin: 'java'
-
 sourceCompatibility = 1.8
+
+springBoot {
+    executable = true
+}
 
 ext {
     springbootVersion = "1.5.2.RELEASE"
@@ -20,11 +27,13 @@ dependencies {
 
     compile(
             "org.springframework.boot:spring-boot-starter-web:${springbootVersion}",
+            "org.springframework.boot:spring-boot-starter-actuator:${springbootVersion}",
+            "org.springframework.boot:spring-boot-starter-security:${springbootVersion}",
 //            "org.springframework.boot:spring-boot-starter-data-jpa:${springbootVersion}",
             "org.mybatis.spring.boot:mybatis-spring-boot-starter:1.3.0",
             "com.github.ulisesbocchio:jasypt-spring-boot-starter:1.12",
             "com.alibaba:fastjson:1.2.31",
-            "mysql:mysql-connector-java:6.0.6"
+            "mysql:mysql-connector-java:5.1.38"
 //            "org.hsqldb:hsqldb:2.4.0"
 //            "com.fasterxml.jackson.dataformat:jackson-dataformat-xml:2.8.8",
     )

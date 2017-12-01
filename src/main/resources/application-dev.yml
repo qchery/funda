@@ -16,10 +16,28 @@ jasypt:
 spring:
   datasource:
     url: jdbc:mysql://localhost:3306/test?useUnicode=true&characterEncoding=UTF-8
-    username: ENC(CJ0EN4egw8l1k6aCtr9JMA==)
+    username: root
     password: 123456
-    driver-class-name: com.mysql.cj.jdbc.Driver
+    driver-class-name: com.mysql.jdbc.Driver
 mybatis:
   configuration:
     map-underscore-to-camel-case: true
   type-aliases-package: com.qchery.funda.modules
+server:
+  port: 9000
+endpoints:
+  shutdown:
+    enabled: true
+    path: /xxx
+management:
+  security:
+    enabled: true
+  port: 9001
+  address: 127.0.0.1
+  context-path: /admin
+security:
+  basic:
+    enabled: true
+  user:
+    name: root
+    password: 123456
