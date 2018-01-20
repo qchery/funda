@@ -34,7 +34,8 @@ dependencies {
             "com.github.ulisesbocchio:jasypt-spring-boot-starter:1.12",
             "com.alibaba:fastjson:1.2.31",
             "mysql:mysql-connector-java:5.1.38",
-            "com.zaxxer:HikariCP:2.7.4"
+            "com.zaxxer:HikariCP:2.7.4",
+            "org.codehaus.janino:janino:3.0.8"
 //            "org.hsqldb:hsqldb:2.4.0"
 //            "com.fasterxml.jackson.dataformat:jackson-dataformat-xml:2.8.8",
     )

@@ -1,3 +1,43 @@
+sys:
+  users:
+    - username: 13632672222
+      password: 123456
+      age: 22
+      nickName: 张三
+jasypt:
+  encryptor:
+    password: funda
+    algorithm: PBEWithMD5AndDES
 spring:
-  profiles:
-    active: dev
+  datasource:
+    url: jdbc:mysql://localhost:3306/test?useUnicode=true&characterEncoding=UTF-8
+    username: root
+    password: 123456
+    driver-class-name: com.mysql.jdbc.Driver
+    type: com.zaxxer.hikari.HikariDataSource
+    hikari:
+      connection-test-query: select 1 from dual
+      idle-timeout: 10000
+mybatis:
+  configuration:
+    map-underscore-to-camel-case: true
+  type-aliases-package: com.qchery.funda.modules
+server:
+  port: 9000
+endpoints:
+  shutdown:
+    enabled: true
+    path: /xxx
+management:
+  security:
+    enabled: true
+  port: 9001
+  address: 127.0.0.1
+  context-path: /admin
+security:
+  basic:
+    enabled: true
+    path: /admin
+  user:
+    name: root
+    password: 123456

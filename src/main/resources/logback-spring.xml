@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+
+    <property name="logPath" value="."/>
+    <!-- 默认使用生产配置，日志不在控制台输出，开发时可修改为 dev -->
+    <property name="logProfile" value="prod"/>
+
+    <appender name="consoleAppender" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <appender name="businessAppender"
+              class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${logPath}/funda.log</file>
+        <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+            <Pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</Pattern>
+        </encoder>
+
+        <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+            <!-- rollover daily -->
+            <fileNamePattern>${logPath}/funda.log.%d{yyyy-MM-dd}.%i</fileNamePattern>
+            <!-- 单个文件最大 100MB, 保留 30 天内的历史记录, 但最多 20GB -->
+            <maxHistory>30</maxHistory>
+            <totalSizeCap>20GB</totalSizeCap>
+            <maxFileSize>100MB</maxFileSize>
+        </rollingPolicy>
+
+    </appender>
+
+    <if condition='property("logProfile").contains("prod")'>
+        <then>
+            <logger name="com.qchery" level="INFO" additivity="false">
+                <appender-ref ref="businessAppender"/>
+            </logger>
+            <root level="INFO">
+                <appender-ref ref="businessAppender"/>
+            </root>
+        </then>
+        <else>
+            <logger name="com.qchery" level="DEBUG" additivity="false">
+                <appender-ref ref="consoleAppender"/>
+            </logger>
+            <root level="INFO">
+                <appender-ref ref="consoleAppender"/>
+            </root>
+        </else>
+    </if>
+
+</configuration>
