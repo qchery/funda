@@ -42,6 +42,7 @@ management:
 security:
   basic:
     enabled: true
+    path: /admin
   user:
     name: root
     password: 123456

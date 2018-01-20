@@ -1,7 +1,7 @@
 plugins {
     id 'org.springframework.boot' version '1.5.2.RELEASE'
+    id 'java'
 }
-apply plugin: 'java'
 
 group 'com.qchery'
 version '1.0-SNAPSHOT'
@@ -39,7 +39,6 @@ dependencies {
 //            "com.fasterxml.jackson.dataformat:jackson-dataformat-xml:2.8.8",
     )
     testCompile(
-            "junit:junit:4.11",
             "org.springframework.boot:spring-boot-starter-test:${springbootVersion}"
     )
 }

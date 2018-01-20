@@ -13,10 +13,10 @@ import org.springframework.boot.context.properties.EnableConfigurationProperties
 @EnableConfigurationProperties({
         SystemProperties.class
 })
-public class FundaAppliction {
+public class FundaApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(FundaAppliction.class, args);
+        SpringApplication.run(FundaApplication.class, args);
     }
 
 }
