@@ -25,8 +25,11 @@ public class LogResponseBodyAdvice implements ResponseBodyAdvice {
     }
 
     @Override
-    public Object beforeBodyWrite(Object body, MethodParameter returnType, MediaType selectedContentType, Class selectedConverterType, ServerHttpRequest request, ServerHttpResponse response) {
-        logger.debug("uri={} | responseBody={}", request.getURI().getPath(), JsonDesUtils.toLogString(body));
+    public Object beforeBodyWrite(Object body, MethodParameter returnType, MediaType selectedContentType,
+                                  Class selectedConverterType, ServerHttpRequest request, ServerHttpResponse response) {
+        if (logger.isDebugEnabled()) {
+            logger.debug("uri={} | responseBody={}", request.getURI().getPath(), JsonDesUtils.toLogString(body));
+        }
         return body;
     }
 }

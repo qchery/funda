@@ -53,7 +53,9 @@ public class LogRequestBodyAdvice implements RequestBodyAdvice {
         if (!methodMappingUri.startsWith("/")) {
             methodMappingUri = "/" + methodMappingUri;
         }
-        logger.debug("uri={} | requestBody={}", classMappingUri + methodMappingUri, JsonDesUtils.toLogString(body));
+        if (logger.isDebugEnabled()) {
+            logger.debug("uri={} | requestBody={}", classMappingUri + methodMappingUri, JsonDesUtils.toLogString(body));
+        }
         return body;
     }
 
