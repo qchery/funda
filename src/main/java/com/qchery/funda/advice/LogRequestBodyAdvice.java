@@ -7,10 +7,12 @@ import org.springframework.core.MethodParameter;
 import org.springframework.http.HttpInputMessage;
 import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.web.bind.annotation.ControllerAdvice;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.method.annotation.RequestBodyAdvice;
 
-import java.io.IOException;
+import java.lang.annotation.Annotation;
 import java.lang.reflect.Method;
 import java.lang.reflect.Type;
 
@@ -39,7 +41,7 @@ public class LogRequestBodyAdvice implements RequestBodyAdvice {
     @Override
     public HttpInputMessage beforeBodyRead(HttpInputMessage inputMessage,
                                            MethodParameter parameter, Type targetType,
-                                           Class<? extends HttpMessageConverter<?>> converterType) throws IOException {
+                                           Class<? extends HttpMessageConverter<?>> converterType) {
         return inputMessage;
     }
 
@@ -47,26 +49,40 @@ public class LogRequestBodyAdvice implements RequestBodyAdvice {
     public Object afterBodyRead(Object body, HttpInputMessage inputMessage,
                                 MethodParameter parameter, Type targetType,
                                 Class<? extends HttpMessageConverter<?>> converterType) {
-        Method method = parameter.getMethod();
-        String classMappingUri = getClassMappingUri(method.getDeclaringClass());
-        String methodMappingUri = getMethodMappingUri(method);
-        if (!methodMappingUri.startsWith("/")) {
-            methodMappingUri = "/" + methodMappingUri;
-        }
         if (logger.isDebugEnabled()) {
+            Method method = parameter.getMethod();
+            String classMappingUri = getClassMappingUri(method.getDeclaringClass());
+            String methodMappingUri = getMethodMappingUri(method);
+            if (!methodMappingUri.startsWith("/") && !classMappingUri.endsWith("/")) {
+                methodMappingUri = "/" + methodMappingUri;
+            }
             logger.debug("uri={} | requestBody={}", classMappingUri + methodMappingUri, JsonDesUtils.toLogString(body));
         }
         return body;
     }
 
     private String getMethodMappingUri(Method method) {
-        RequestMapping methodDeclaredAnnotation = method.getDeclaredAnnotation(RequestMapping.class);
-        return methodDeclaredAnnotation == null ? "" : getMaxLength(methodDeclaredAnnotation.value());
+        return getMappingUri(method.getDeclaredAnnotations());
     }
 
     private String getClassMappingUri(Class<?> declaringClass) {
-        RequestMapping classDeclaredAnnotation = declaringClass.getDeclaredAnnotation(RequestMapping.class);
-        return classDeclaredAnnotation == null ? "" : getMaxLength(classDeclaredAnnotation.value());
+        return getMappingUri(declaringClass.getDeclaredAnnotations());
+    }
+
+    private String getMappingUri(Annotation[] declaredAnnotations) {
+        String mappingUri = null;
+        for (Annotation declaredAnnotation : declaredAnnotations) {
+            if (declaredAnnotation instanceof RequestMapping) {
+                mappingUri = getMaxLength(((RequestMapping) declaredAnnotation).value());
+            } else if (declaredAnnotation instanceof PostMapping) {
+                mappingUri = getMaxLength(((PostMapping) declaredAnnotation).value());
+            } else if (declaredAnnotation instanceof GetMapping) {
+                mappingUri = getMaxLength(((GetMapping) declaredAnnotation).value());
+            } else {
+                mappingUri = "";
+            }
+        }
+        return mappingUri;
     }
 
     private String getMaxLength(String[] strings) {
