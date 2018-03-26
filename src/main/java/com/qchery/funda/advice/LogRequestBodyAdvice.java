@@ -70,28 +70,26 @@ public class LogRequestBodyAdvice implements RequestBodyAdvice {
     }
 
     private String getMappingUri(Annotation[] declaredAnnotations) {
-        String mappingUri = null;
+        String mappingUri = "";
         for (Annotation declaredAnnotation : declaredAnnotations) {
             if (declaredAnnotation instanceof RequestMapping) {
-                mappingUri = getMaxLength(((RequestMapping) declaredAnnotation).value());
+                mappingUri = getMaxLengthUri(((RequestMapping) declaredAnnotation).value());
             } else if (declaredAnnotation instanceof PostMapping) {
-                mappingUri = getMaxLength(((PostMapping) declaredAnnotation).value());
+                mappingUri = getMaxLengthUri(((PostMapping) declaredAnnotation).value());
             } else if (declaredAnnotation instanceof GetMapping) {
-                mappingUri = getMaxLength(((GetMapping) declaredAnnotation).value());
-            } else {
-                mappingUri = "";
+                mappingUri = getMaxLengthUri(((GetMapping) declaredAnnotation).value());
             }
         }
         return mappingUri;
     }
 
-    private String getMaxLength(String[] strings) {
-        String methodMappingUri = "";
+    private String getMaxLengthUri(String[] strings) {
+        String maxLengthUri = "";
         for (String string : strings) {
-            if (string.length() > methodMappingUri.length()) {
-                methodMappingUri = string;
+            if (string.length() > maxLengthUri.length()) {
+                maxLengthUri = string;
             }
         }
-        return methodMappingUri;
+        return maxLengthUri;
     }
 }
