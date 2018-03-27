@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <configuration>
 
-    <property name="logPath" value="."/>
+    <property name="logPath" value="/log/funda"/>
     <!-- 默认使用生产配置，日志不在控制台输出，开发时可修改为 dev -->
     <property name="logProfile" value="prod"/>
 

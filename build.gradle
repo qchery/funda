@@ -1,6 +1,6 @@
 buildscript {
     ext {
-        springBootVersion = "1.5.2.RELEASE"
+        springBootVersion = "1.5.8.RELEASE"
     }
     repositories {
         mavenLocal()
@@ -8,16 +8,24 @@ buildscript {
     }
     dependencies {
         classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+        classpath('gradle.plugin.com.palantir.gradle.docker:gradle-docker:0.19.2')
     }
 }
 
 apply plugin: 'java'
 apply plugin: 'org.springframework.boot'
+apply plugin: 'com.palantir.docker'
 
 group 'com.qchery'
 version '1.0-SNAPSHOT'
 
 sourceCompatibility = 1.8
+
+docker {
+    name "${project.group}/${jar.baseName}"
+    files jar.archivePath
+    buildArgs(['JAR_FILE': "${jar.archiveName}"])
+}
 
 repositories {
     mavenLocal()

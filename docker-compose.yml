@@ -1,0 +1,9 @@
+version: '2'
+services:
+  funda:
+    image: com.qchery/funda:latest
+    ports:
+      - "9000:9000"
+      - "9001:9001"
+    volumes:
+      - ./log:/log/funda
