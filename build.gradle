@@ -27,6 +27,10 @@ docker {
     buildArgs(['JAR_FILE': "${jar.archiveName}"])
 }
 
+jar {
+    exclude "application*.yml", "Jasypt*.md"
+}
+
 repositories {
     mavenLocal()
     maven { url "http://maven.aliyun.com/nexus/content/groups/public/" }
